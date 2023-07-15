@@ -23,6 +23,16 @@ class BatteryTest(unittest.TestCase):
 
         self.assertFalse(nubbin_battery.needs_service())
 
+    def test_nubbin_battery_for_negative_date_difference(self):
+        current_date = datetime.today().date()
+        last_service_year = current_date.year + 5
+        last_service_date = current_date.replace(last_service_year, current_date.month, current_date.day)
+
+        nubbin_battery = NubbinBattery(last_service_date, current_date)
+
+        with self.assertRaises(ValueError):
+            nubbin_battery.needs_service()
+
     def test_spindler_battery_should_be_serviced(self):
         current_date = datetime.today().date()
         last_service_year = current_date.year - 8
@@ -40,3 +50,13 @@ class BatteryTest(unittest.TestCase):
         spindler = SpindlerBattery(last_service_date, current_date)
 
         self.assertFalse(spindler.needs_service())
+
+    def test_spindler_battery_for_negative_date_difference(self):
+        current_date = datetime.today().date()
+        last_service_year = current_date.year + 7
+        last_service_date = current_date.replace(last_service_year, current_date.month, current_date.day)
+
+        spindler = SpindlerBattery(last_service_date, current_date)
+
+        with self.assertRaises(ValueError):
+            spindler.needs_service()
