@@ -1,11 +1,7 @@
 from car.Car import Car
 
+
 class Thovex(Car):
-    
-    def __init__(self,  engine, battery, current_date, last_service_date, 
-                 last_service_mileage, current_mileage):
-        super().__init__(current_date, last_service_date, last_service_mileage, current_mileage)
-        super().set_battery(battery)
-        super().set_engine(engine)
-    
-    
+
+    def __init__(self, engine, battery, tyre, last_service_date):
+        super().__init__(engine, battery, tyre, last_service_date)
