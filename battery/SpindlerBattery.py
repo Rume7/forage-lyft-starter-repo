@@ -3,7 +3,7 @@ from battery.IBattery import IBattery
 
 class SpindlerBattery(IBattery):
 
-    years_b4_service = 2
+    years_b4_service = 3
 
     def __init__(self, last_service_date, current_date):
         super().__init__(last_service_date, current_date)
